@@ -1,0 +1,16 @@
+html{
+    background-color: slategray;
+    color: white;
+    
+}
+
+#rotate {
+    display: inline-block;
+    padding: 0;
+}
+#rotate {
+    width: 120px;
+    height: 100px;
+    margin-bottom: 0px;
+    transform: rotate(-90deg);
+}
