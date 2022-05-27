@@ -40,9 +40,11 @@ function debugResponce(req, res){
             param[pair[0]] = pair[1] == "undefined" ? "" : pair[1];
         });
 
+        var result = "none";
+
         //投票等、ページ返却以外の処理
-        if(param.submit != undefined){
-            settings.params.actions[param.submit](param);
+        if(param.headers["Action Header"] != undefined){
+            result = settings.params.actions["Action Header"](param);
         }
 
         //ページ名の解釈
@@ -52,7 +54,7 @@ function debugResponce(req, res){
         console.log(raw_data);
 
         //res.write(`{ "createday" : "2022/01/01", "order" : "2022010101", "answer1" : 70, "answer2" : "", "id" : "KCF-1234111.111.111" }\n`);
-        res.write(`{ "createday" : "2022/01/01", "order" : "2022010101", "question" : "cold?", "closeday" : "2022/01/02", "name" : "terai", "pass" : "12345" }`);
+        res.write(result);
         res.end();
     });
 }

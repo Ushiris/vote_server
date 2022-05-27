@@ -1,8 +1,9 @@
 exports.action = function(param){
     const settings = require("../../settings");
     
-    var voteFile = settings.getVoteJson();
+    var voteFile = JSON.parse(settings.getVoteJson());
     var answer = {
+        "key"       : param["key"],
         "createday" : param["createday"],
         "order"     : param["order"],
         "answer1"   : param["answer1"],
