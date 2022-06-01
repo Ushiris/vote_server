@@ -32,19 +32,17 @@ function debugResponce(req, res){
 
     //データの読み込み完了時の処理
     }).on("end", () => {
-        //パラメータの整形
-        var params_str = raw_data.split("&");
-        var param = new Object();
-        params_str.forEach(item => {
-            var pair = item.split("=");
-            param[pair[0]] = pair[1] == "undefined" ? "" : pair[1];
-        });
-
         var result = "none";
 
-        //投票等、ページ返却以外の処理
-        if(param.headers["Action Header"] != undefined){
-            result = settings.params.actions["Action Header"](param);
+        console.log(req.headers);
+
+        //処理を呼び出しに行く
+        if(req.headers["Action Header"] != undefined){
+            //AnswerかQuestionを持たせる
+            var ans = req.headers["Answer"] ?? null;
+            var que = req.headers["Question"] ?? {};
+
+            result = settings.params.actions["Action Header"](ans ?? que);
         }
 
         //ページ名の解釈
@@ -53,7 +51,6 @@ function debugResponce(req, res){
 
         console.log(raw_data);
 
-        //res.write(`{ "createday" : "2022/01/01", "order" : "2022010101", "answer1" : 70, "answer2" : "", "id" : "KCF-1234111.111.111" }\n`);
         res.write(result);
         res.end();
     });
@@ -77,16 +74,6 @@ function releseResponce(req, res){
             param[pair[0]] = pair[1] == "undefined" ? "" : pair[1];
         });
     });
-}
-
-//HTMLページ内の特定の文字を変換する
-function replacer(htmlDocument){
-    var voteFile = settings.getVoteJson();
-    var jsonStr = JSON.stringify(voteFile, null, 2);
-    const ip = Object.values(os.networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
-
-    return htmlDocument.replace("origin", `http://${ip}:${settings.params.port}`)
-                       .replace("<!-- result -->", jsonStr);
 }
 
 //定期的に締め切りが過ぎた質問がないかチェックしたい

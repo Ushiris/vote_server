@@ -6,22 +6,18 @@ exports.params = {
     "voteFile" : DEBUG_FLAG ? "./test/test_result.json" : "./activeVote.json",
     "archive"  : DEBUG_FLAG ? "./test/testLog.json" : "./archives/Log.json",
     "port"     : 3000,
-    "home"     : DEBUG_FLAG ? "\\test/index.html" : "\\index.html",
-    "counter"  : "./data/count.json",
     "MIME"     : {
         ".html" : "text/html",
         ".css"  : "text/css",
-        ".js"   : "text/javascript",
-        ".ico"  : "image/vnd.microsoft.icon"
+        ".js"   : "text/javascript"
         // 読み取りたいMIMEタイプはここに追記
     },
     "actions"  : {
-        "vote"       : require('./actions/vote').action,
-        "checkClose" : require('./actions/checkClose').action,
-        "create"     : require('./actions/question').action,
-        "delete"     : require('./actions/delete.js').action,
+        "Answer"     : require('./actions/vote').action,
+        "Create"     : require('./actions/question').action,
+        "Delete"     : require('./actions/delete.js').action,
         //ここで機能の登録を行う
-        "load"       : (()=>{})
+        "Get"        : require('./actions/get.js').action
     }
 }
 
