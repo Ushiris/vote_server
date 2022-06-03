@@ -11,30 +11,28 @@ var http = require('http');
 var server = http.createServer();
 
 //サーバーへ何かが届いた時の処理
-server.on('request', settings.params.isDebug ? debugResponce : releseResponce).listen(settings.params.port);
+server.on('request', Main).listen(settings.params.port);
 
-function debugResponce(req, res){
+function Main(req, res){
     req.setEncoding("utf-8");
-    var raw_data = "";
 
     res.writeHead(200, 
         {
             'Content-Type' : "text/plain",
             "voteSyatem" : "hoge!",
-            'Access-Control-Allow-Origin' : "*",
-            "Access-Control-Allow-Headers" : "*"
+            'Access-Control-Allow-Origin' : "*", /* CROS規約の回避 */
+            "Access-Control-Allow-Headers" : "*" /* CROS規約の回避 */
         }
     );
 
     //データの読み込み中の処理
+    var raw_data = "";
     req.on("data", chunk => {
         if(chunk.trim() != "")raw_data += chunk;
 
     //データの読み込み完了時の処理
     }).on("end", () => {
         var result = "none";
-
-        console.log(req.headers);
 
         //処理を呼び出しに行く
         if(req.headers["Action Header"] != undefined){
@@ -45,34 +43,8 @@ function debugResponce(req, res){
             result = settings.params.actions["Action Header"](ans ?? que);
         }
 
-        //ページ名の解釈
-        var filePath = req.url == '/' ? settings.params.home : req.url;
-        var fullPath = __dirname + filePath.replace("/","\\");
-
-        console.log(raw_data);
-
         res.write(result);
         res.end();
-    });
-}
-
-function releseResponce(req, res){
-    req.setEncoding("utf-8");
-    var raw_data = "";
-
-    //データの読み込み中の処理
-    req.on("data", chunk => {
-        if(chunk.trim() != "")raw_data += chunk;
-
-    //データの読み込み完了時の処理
-    }).on("end", () => {
-        //パラメータの整形
-        var params_str = raw_data.split("&");
-        var param = new Object();
-        params_str.forEach(item => {
-            var pair = item.split("=");
-            param[pair[0]] = pair[1] == "undefined" ? "" : pair[1];
-        });
     });
 }
 

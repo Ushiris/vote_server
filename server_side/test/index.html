@@ -8,40 +8,19 @@
     <title>クライアント画面出力</title>
 </head>
 <body>
-    <h2>出力内容</h2>
-    <p class = "cliant-out"></p>
-    <form action = "origin" id = "form"  method="post" name="load">
-        <p>hot</p>
-        <div id="rotate">
-            <input type="range" name="answer1" id="in-val" min="-100" max="100" step="1" list="tick">
-
-            <datalist id = "tick">
-                <option value="-100"></option>
-                <option value="-80"></option>
-                <option value="-60"></option>
-                <option value="-40"></option>
-                <option value="-20"></option>
-                <option value="0"></option>
-                <option value="20"></option>
-                <option value="40"></option>
-                <option value="60"></option>
-                <option value="80"></option>
-                <option value="100"></option>
-            </datalist>
-        </div>
-        <p>cold</p>
-
-        <p>answer2<input type="text" name="answer2" value="群馬" title="answer2"></p>
-        <p>id<input type="text" name="id" value="id-test" title="id"></p>
-        <p>order<input type="text" name="order" title="order" value="order-test"></p>
-
-        <input type="submit" name="submit" value="vote">
-        <input type="submit" name="submit" value="load">
+    <h1>デバッグ用リクエストボタン</h1>
+    <form action="post">
+        <input type="button" title="Create">
+        <p>
+            params:
+            <input type="text" title="key">
+            <input type="text" title="createday">
+            <input type="text" title="order">
+            <input type="text" title="answer1">
+            <input type="text" title="answer2">
+            <input type="text" title="">
+        </p>
+        <input type="button" title="Delete">
     </form>
-
-    <div>
-        <p>現在の投票データ:</p>
-        <code id="result"><pre><!-- result --></pre></code>
-    </div>
 </body>
 </html>

@@ -1,10 +1,11 @@
 const fs = require('fs');
-const DEBUG_FLAG = true;
 
+/**
+ * @var Object
+ */
 exports.params = {
-    "isDebug"  : DEBUG_FLAG,
-    "voteFile" : DEBUG_FLAG ? "./test/test_result.json" : "./activeVote.json",
-    "archive"  : DEBUG_FLAG ? "./test/testLog.json" : "./archives/Log.json",
+    "voteFile" : "./data/voteData.json",
+    "logFile"  : "./data/logs.json",
     "port"     : 3000,
     "MIME"     : {
         ".html" : "text/html",
@@ -13,18 +14,27 @@ exports.params = {
         // 読み取りたいMIMEタイプはここに追記
     },
     "actions"  : {
-        "Answer"     : require('./actions/vote').action,
-        "Create"     : require('./actions/question').action,
+        "Answer"     : require('./actions/vote.js').action,
+        "Create"     : require('./actions/question.js').action,
         "Delete"     : require('./actions/delete.js').action,
         //ここで機能の登録を行う
         "Get"        : require('./actions/get.js').action
     }
 }
 
+/**
+ * @description 投票データをStringで取得します。
+ * @returns String
+ */
 exports.getVoteJson = function(){
     return require(exports.params.voteFile);
 }
 
+/**
+ * @description 投票データを上書きします。
+ * @param Object jsonObj
+ * @returns String
+ */
 exports.setVoteJson = function(jsonObj){
     fs.writeFileSync(exports.params.voteFile, JSON.stringify(jsonObj));
 }

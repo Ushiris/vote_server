@@ -8,6 +8,7 @@ exports.action = function(param){
         if(voteFile.QuestionInfo[i].key == param["key"]){
             deleted_data = voteFile.QuestionInfo[i];
             voteFile.QuestionInfo.splice(i, 1);
+            
             break;
         }
     }

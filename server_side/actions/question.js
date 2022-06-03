@@ -1,6 +1,6 @@
 exports.action = function(param){
     const settings = require("../../settings");
-    
+
     var voteFile = JSON.parse(settings.getVoteJson());
 
     var question = {
@@ -15,4 +15,6 @@ exports.action = function(param){
 
     voteFile.QuestionInfo.push(question);
     settings.setVoteJson(voteFile);
+
+    return JSON.stringify(question);
 }
