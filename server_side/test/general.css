@@ -4,13 +4,16 @@ html{
     
 }
 
-#rotate {
-    display: inline-block;
-    padding: 0;
+.arg-title{
+    display: inline;
+    width: 300px;
 }
-#rotate {
-    width: 120px;
-    height: 100px;
-    margin-bottom: 0px;
-    transform: rotate(-90deg);
+
+.request-box{
+    float: left;
+    margin-right: 50px;
+}
+
+.args{
+    float: right;
 }
