@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var os = require('os');
 
-const settings = require('./settings');
+const settings = require('./settings.js');
 
 //サーバー作成
 var http = require('http');
@@ -18,7 +18,7 @@ server.on('request', main).listen(settings.params.port);
  * @param {http.ServerResponse} res 
  */
 function main(req, res){
-    var mode = req.headers["voteSystem"] ?? "";
+    var mode = req.headers["votesystem"] ?? "std";
 
     //ヘッダーの定義
     req.setEncoding("utf-8");
@@ -32,15 +32,13 @@ function main(req, res){
     }).on("end", () => {
         var result = "none";
 
-        console.log(req.headers);
-
         //処理を呼び出しに行く
         if(req.headers["action"]){
             //AnswerかQuestionを持たせる
-            var ans = req.headers["answer"] ?? null;
-            var que = req.headers["question"] ?? {};
+            var ans = req.headers["answer"];
+            var que = req.headers["question"];
 
-            result = settings.params.actions[req.headers["action"]](ans ?? que);
+            result = settings.params.actions[req.headers["action"]](JSON.parse(ans ?? que));
         }
 
         //ページ名の解釈
@@ -54,21 +52,19 @@ function main(req, res){
 
         res.writeHead(200, 
             {
-                'Content-Type' : mode == "" ? (settings.params.MIME[path.extname(fullPath)] ?? "text/plain") : "text/plain",
+                'Content-Type' : mode == "api" ? "text/plain" : (settings.params.MIME[path.extname(fullPath)] ?? "text/plain") ,
                 'Access-Control-Allow-Origin' : "*", /* CROS規約の回避 */
                 "Access-Control-Allow-Headers" : "*" /* CROS規約の回避 */
             }
         );
 
-        console.log(result);
-
-        res.write(mode == "" ? getDebugPage(result, fullPath) : result);
+        res.write(mode == "api" ? result : getDebugPage(result, fullPath));
         res.end();
     });
 }
 
-function getDebugPage(result, page){
-    return fs.readFileSync(page, 'utf-8').replace("<!-- -voteSystem.output- -->", result);
+function getDebugPage(result, fullPath){
+    return fs.readFileSync(fullPath, 'utf-8').replace("<!-- -voteSystem.output- -->", JSON.stringify(result, null, "\t"));
 }
 
 //定期的に締め切りが過ぎた質問がないかチェックしたい

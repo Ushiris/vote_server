@@ -1,5 +1,5 @@
 exports.action = function(param){
-    const settings = require("../../settings");
+    const settings = require("../settings");
     
     var voteFile = JSON.parse(settings.getVoteJson());
 

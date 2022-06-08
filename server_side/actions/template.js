@@ -1,6 +1,6 @@
 exports.action = function(param){
     //データのロード
-    const settings = require("../../settings");
+    const settings = require("../settings");
     var voteFile = JSON.parse(settings.getVoteJson());
 
     //処理
