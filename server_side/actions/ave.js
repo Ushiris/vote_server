@@ -13,8 +13,5 @@ exports.action = function(param){
         }
     });
 
-    //データの保存
-    var voteFile = JSON.parse(settings.getVoteJson());
-
     return JSON.stringify({"key" : param.key, "answer1" : sum / count});
 }

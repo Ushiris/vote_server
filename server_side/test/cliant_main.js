@@ -11,7 +11,7 @@ function generateXHR(){
             }
         }
     });
-    XHR.open('POST', "http://192.168.10.151:3000");
+    XHR.open('POST', "<serverIP>:<port>");
     XHR.setRequestHeader('voteSystem', 'api');
 
     return XHR;
@@ -74,4 +74,23 @@ function answer(){
     XHR.send("");
 
     console.log("answer!");
+}
+
+function init(){
+    var XHR = generateXHR();
+    XHR.setRequestHeader('Action', "init");
+
+    var dummy = {
+        "key"       : document.getElementById('answer-key').value       ?? "-1",
+        "createday" : document.getElementById('answer-createday').value ?? "2022/09/06",
+        "order"     : document.getElementById('answer-order').value     ?? "2022090699",
+        "answer1"   : document.getElementById('answer-answer1').value   ?? "10",
+        "answer2"   : document.getElementById('answer-answer2').value   ?? "text",
+        "id"        : document.getElementById('answer-id').value        ?? "KCF-1234111.111.121"
+    }
+    
+    XHR.setRequestHeader('Answer', JSON.stringify(dummy));
+    XHR.send("");
+
+    console.log("init!");
 }

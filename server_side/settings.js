@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 /**
  * @var Object
@@ -18,7 +19,19 @@ exports.params = {
         "Create"     : require('./actions/question.js').action,
         "Delete"     : require('./actions/delete.js').action,
         //ここで機能の登録を行う
-        "Get"        : require('./actions/get.js').action
+        "Get"        : require('./actions/get.js').action,
+        "init"       : require('./actions/init.js').action
+    }
+}
+
+exports.getMIME = function(mode, fullPath){
+    if(mode == 'api') return "text/plain";
+
+    switch(path.extname(fullPath)){
+        case ".html" : return "text/html";
+        case ".css"  : return "text/css";
+        case ".js"   : return "text/javascript";
+        default      : return "text/plain";
     }
 }
 
@@ -77,4 +90,15 @@ exports.generateKey = function(){
     fs.writeFileSync(__dirname + "\\data\\counter.json", JSON.stringify(count));
 
     return count.key;
+}
+
+/**
+ * @description 全てのデータを消去します。初期化する際以外には使わない方がよい。
+ */
+exports.deleteAllData = function(){
+    var defaultVote = '{"QuestionInfo":[],"AnswerInfo":[]}';
+    var defaultCount = '{}';
+
+    fs.writeFileSync(__dirname + exports.params.voteFile.replace("/","\\"), defaultVote);
+    fs.writeFileSync(__dirname + "\\data\\counter.json", defaultCount);
 }
