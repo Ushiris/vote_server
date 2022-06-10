@@ -8,7 +8,7 @@ const settings = require('./settings.js');
 var http = require('http');
 var server = http.createServer().on('request', main).listen(settings.params.port);
 
-//URLをサーバーのコンソールに表示する
+//ローカルURLをサーバーのコンソールに表示する
 const ip = Object.values(os.networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
 console.log(`URL:http://${ip}:${settings.params.port}`);
 
@@ -34,9 +34,10 @@ function main(req, res) {
 
         //処理を呼び出しに行く
         if (req.headers["action"]) {
+            console.log(req.headers["answer"] ?? req.headers["question"] ?? raw_data);
             result = settings.params.actions[req.headers["action"]](
                 JSON.parse(
-                    req.headers["answer"] ?? req.headers["question"]
+                    req.headers["answer"] ?? req.headers["question"] ?? raw_data
                 )
             );
         }
