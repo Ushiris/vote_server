@@ -15,7 +15,7 @@ console.log(`URL:http://${ip}:${settings.params.port}`);
 /**
  * @description リクエストへの応答を行います。
  * @param {http.IncomingMessage} req 
- * @param {http.ServerResponse} res 
+ * @param {http.ServerResponse} res
  */
 function main(req, res) {
     var mode = req.headers["votesystem"] ?? "std";
@@ -34,7 +34,6 @@ function main(req, res) {
 
         //処理を呼び出しに行く
         if (req.headers["action"]) {
-            console.log(req.headers["answer"] ?? req.headers["question"] ?? raw_data);
             result = settings.params.actions[req.headers["action"]](
                 JSON.parse(
                     req.headers["answer"] ?? req.headers["question"] ?? raw_data
@@ -43,7 +42,7 @@ function main(req, res) {
         }
 
         //ページ名の解釈
-        var filePath = req.url == '/' ? '\\test\\index.html' : req.url;
+        var filePath = (req.url == '/') ? '\\test\\index.html' : req.url;
         var fullPath = __dirname + filePath.replace("/", "\\");
 
         res.writeHead(200,
@@ -54,12 +53,12 @@ function main(req, res) {
             }
         );
 
-        res.write(mode == "api" ? result : getDebugPage(result, fullPath));
+        res.write(mode == "api" ? result : getDebugPage(fullPath));
         res.end();
     });
 }
 
-function getDebugPage(result, fullPath) {
+function getDebugPage(fullPath) {
     var data = fs.readFileSync(fullPath, 'utf-8');
     data = data.replace(/\<serverIP\>/g, ip)
         .replace(/\<port\>/g, settings.params.port)

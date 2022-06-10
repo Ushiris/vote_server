@@ -9,64 +9,82 @@
     </head>
 
     <body>
-        <h1>デバッグ用リクエストボタン</h1>
-
-        <div class="request-box" id="create-area">
-            <input type="button" value="create" onclick="create()">
-            <p>
-                params:
-                <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="create-key">       </div>
-                <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="create-createday"> </div>
-                <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="create-order">     </div>
-                <div class="arg"> <p class="arg-title"> question  </p> <input type="text" class="args" value="" title="question"  id="create-question">  </div>
-                <div class="arg"> <p class="arg-title"> closeday  </p> <input type="text" class="args" value="" title="closeday"  id="create-closeday">  </div>
-                <div class="arg"> <p class="arg-title"> name      </p> <input type="text" class="args" value="" title="name"      id="create-name">      </div>
-                <div class="arg"> <p class="arg-title"> pass      </p> <input type="text" class="args" value="" title="pass"      id="create-pass">      </div>
-            </p>
+        <div id="request">
+            <h1>デバッグ用リクエストボタン</h1>
+    
+            <div class="request-box" id="create-area">
+                <input type="button" value="create" onclick="create()">
+                <p>
+                    params:
+                    <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="create-key">       </div>
+                    <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="create-createday"> </div>
+                    <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="create-order">     </div>
+                    <div class="arg"> <p class="arg-title"> question  </p> <input type="text" class="args" value="" title="question"  id="create-question">  </div>
+                    <div class="arg"> <p class="arg-title"> closeday  </p> <input type="text" class="args" value="" title="closeday"  id="create-closeday">  </div>
+                    <div class="arg"> <p class="arg-title"> name      </p> <input type="text" class="args" value="" title="name"      id="create-name">      </div>
+                    <div class="arg"> <p class="arg-title"> pass      </p> <input type="text" class="args" value="" title="pass"      id="create-pass">      </div>
+                </p>
+            </div>
+    
+            <div class="request-box" id="delete-area">
+                <input type="button" value="delete" onclick="deleteQ()">
+                <p>
+                    params:
+                    <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="delete-key">       </div>
+                    <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="delete-createday"> </div>
+                    <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="delete-order">     </div>
+                    <div class="arg"> <p class="arg-title"> question  </p> <input type="text" class="args" value="" title="question"  id="delete-question">  </div>
+                    <div class="arg"> <p class="arg-title"> closeday  </p> <input type="text" class="args" value="" title="closeday"  id="delete-closeday">  </div>
+                    <div class="arg"> <p class="arg-title"> name      </p> <input type="text" class="args" value="" title="name"      id="delete-name">      </div>
+                    <div class="arg"> <p class="arg-title"> pass      </p> <input type="text" class="args" value="" title="pass"      id="delete-pass">      </div>
+                </p>
+            </div>
+    
+            <div class="request-box" id="answer-area">
+                <input type="button" value="answer" onclick="answer()">
+                <p>
+                    params:
+                    <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="answer-key">       </div>
+                    <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="answer-createday"> </div>
+                    <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="answer-order">     </div>
+                    <div class="arg"> <p class="arg-title"> answer1   </p> <input type="text" class="args" value="" title="answer1"   id="answer-answer1">   </div>
+                    <div class="arg"> <p class="arg-title"> answer2   </p> <input type="text" class="args" value="" title="answer2"   id="answer-answer2">   </div>
+                    <div class="arg"> <p class="arg-title"> id        </p> <input type="text" class="args" value="" title="id"        id="answer-id">        </div>
+                </p>
+            </div>
+    
+            <div class="request-box" id="init-area">
+                <input type="button" value="init" onclick="init()">
+                <p>
+                    params:
+                    <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="init-key">       </div>
+                    <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="init-createday"> </div>
+                    <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="init-order">     </div>
+                    <div class="arg"> <p class="arg-title"> answer1   </p> <input type="text" class="args" value="" title="answer1"   id="init-answer1">   </div>
+                    <div class="arg"> <p class="arg-title"> answer2   </p> <input type="text" class="args" value="" title="answer2"   id="init-answer2">   </div>
+                    <div class="arg"> <p class="arg-title"> id        </p> <input type="text" class="args" value="" title="id"        id="init-id">        </div>
+                </p>
+            </div>
+    
+    
+            <div class="request-box" id="get-area">
+                <input type="button" value="get" onclick="getData()">
+                <p>
+                    params:
+                    <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="get-key">       </div>
+                    <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="get-createday"> </div>
+                    <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="get-order">     </div>
+                    <div class="arg"> <p class="arg-title"> answer1   </p> <input type="text" class="args" value="" title="answer1"   id="get-answer1">   </div>
+                    <div class="arg"> <p class="arg-title"> answer2   </p> <input type="text" class="args" value="" title="answer2"   id="get-answer2">   </div>
+                    <div class="arg"> <p class="arg-title"> id        </p> <input type="text" class="args" value="" title="id"        id="get-id">        </div>
+                </p>
+            </div>
         </div>
 
-        <div class="request-box" id="delete-area">
-            <input type="button" value="delete" onclick="deleteQ()">
-            <p>
-                params:
-                <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="delete-key">       </div>
-                <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="delete-createday"> </div>
-                <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="delete-order">     </div>
-                <div class="arg"> <p class="arg-title"> question  </p> <input type="text" class="args" value="" title="question"  id="delete-question">  </div>
-                <div class="arg"> <p class="arg-title"> closeday  </p> <input type="text" class="args" value="" title="closeday"  id="delete-closeday">  </div>
-                <div class="arg"> <p class="arg-title"> name      </p> <input type="text" class="args" value="" title="name"      id="delete-name">      </div>
-                <div class="arg"> <p class="arg-title"> pass      </p> <input type="text" class="args" value="" title="pass"      id="delete-pass">      </div>
-            </p>
+        <div class="output-box" id="result">
+            <h1>出力内容</h1>
+    
+            <pre id="output"></pre>
         </div>
-
-        <div class="request-box" id="answer-area">
-            <input type="button" value="answer" onclick="answer()">
-            <p>
-                params:
-                <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="answer-key">       </div>
-                <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="answer-createday"> </div>
-                <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="answer-order">     </div>
-                <div class="arg"> <p class="arg-title"> answer1   </p> <input type="text" class="args" value="" title="answer1"   id="answer-answer1">   </div>
-                <div class="arg"> <p class="arg-title"> answer2   </p> <input type="text" class="args" value="" title="answer2"   id="answer-answer2">   </div>
-                <div class="arg"> <p class="arg-title"> id        </p> <input type="text" class="args" value="" title="id"        id="answer-id">        </div>
-            </p>
-        </div>
-
-        <div class="request-box" id="answer-area">
-            <input type="button" value="init" onclick="init()">
-            <p>
-                params:
-                <div class="arg"> <p class="arg-title"> key       </p> <input type="text" class="args" value="" title="key"       id="answer-key">       </div>
-                <div class="arg"> <p class="arg-title"> createday </p> <input type="text" class="args" value="" title="createday" id="answer-createday"> </div>
-                <div class="arg"> <p class="arg-title"> order     </p> <input type="text" class="args" value="" title="order"     id="answer-order">     </div>
-                <div class="arg"> <p class="arg-title"> answer1   </p> <input type="text" class="args" value="" title="answer1"   id="answer-answer1">   </div>
-                <div class="arg"> <p class="arg-title"> answer2   </p> <input type="text" class="args" value="" title="answer2"   id="answer-answer2">   </div>
-                <div class="arg"> <p class="arg-title"> id        </p> <input type="text" class="args" value="" title="id"        id="answer-id">        </div>
-            </p>
-        </div>
-
-        <h1>出力内容</h1>
-
-        <pre id="output"></pre>
     </body>
 </html>

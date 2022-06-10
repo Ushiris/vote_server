@@ -17,3 +17,13 @@ html{
 .args{
     float: right;
 }
+
+#result{
+    margin-top: 20px;
+    float: left;
+}
+
+#request{
+    margin-top: 0;
+    float: left;
+}

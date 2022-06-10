@@ -19,7 +19,7 @@ exports.params = {
         "Create"     : require('./actions/question.js').action,
         "Delete"     : require('./actions/delete.js').action,
         //ここで機能の登録を行う
-        "Get"        : require('./actions/get.js').action,
+        "get"        : (param) => {return exports.getVoteJson()},
         "init"       : require('./actions/init.js').action
     }
 }
